@@ -218,7 +218,43 @@ class _MyFormPageState extends State<MyFormPage> {
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 15,
+                            child: Container(
+                              child: ListView(
+                                padding:
+                                    const EdgeInsets.only(top: 20, bottom: 20),
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  Center(child: const Text('Informasi Data')),
+                                  SizedBox(height: 20),
+                                  Text("Full Name: $_namaLengkap"),
+                                  Text(
+                                    "Education: ${jenjangDoktor ? "Doctorate" : jenjangMagister ? "Masters" : jenjangSarjana ? "Bachelor" : jenjangDiploma ? "Vocational" : "None"}",
+                                  ),
+                                  Text("Age: $umur"),
+                                  Text("Class: $kelasPBP"),
+                                  Text("Practice Mode: $_nilaiSwitch"),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('Kembali'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
                   },
                   child: const Text(
                     "Simpan",
